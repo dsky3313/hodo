@@ -1,12 +1,24 @@
 ## Interface: 110000
-## Title: [|cffeda55f1|r] |cffffffffhodo|r
+## Title: |cffeda55f1|r |cffffffffhodo|r
 ## Version: 11.0.1
 ## Author: hodo
-## Notes: Utility
+## Notes: hodo QoL
 ## IconTexture: Interface\ICONS\Trade_engineering
+## SavedVariables: hodoDB
+## RequiredDeps: Details
 
-## Since 2020.11.23
+# 2020.11.23 제작
+# 밑에서 위로 파일 읽음
 
-Frame.lua
+Auction.lua
+AutoDifficultySetter.lua
+KeystoneRoll.lua
+MyKey.lua
+NewLFG.lua
+PartyClass.lua
 Slash.lua
 Teleport.lua
+QuickDifficultySetter.lua
+SkyRiding.lua
+
+Option.lua
