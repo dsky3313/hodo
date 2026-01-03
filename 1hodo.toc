@@ -8,17 +8,19 @@
 ## RequiredDeps: Details
 
 # 2020.11.23 제작
-# 밑에서 위로 파일 읽음
+
 
 Auction.lua
-AutoDifficultySetter.lua
+# AutoDifficultySetter.lua
+Camera.lua
+ChatBubble.lua
 KeystoneRoll.lua
 MyKey.lua
 NewLFG.lua
 PartyClass.lua
+QuickDifficultySetter.lua
+# SkyRiding.lua
 Slash.lua
 Teleport.lua
-QuickDifficultySetter.lua
-SkyRiding.lua
 
 Option.lua
