@@ -1,30 +1,53 @@
-local hodoCamera = CreateFrame("Frame")
-
--- 1. 설정값 정의
-local hodoCameraSetting = {
-    test_cameraDynamicPitch = 1,                       -- 1: 켬
-    test_cameraDynamicPitchBaseFovPad = 0.55,           -- 기본 FOV 패딩값
-    test_cameraDynamicPitchBaseFovPadDownScale = 0.55,  -- 탑다운뷰 보정
-    test_cameraDynamicPitchBaseFovPadFlying = 0.55      -- 비행 시 패딩값
-}
-
--- 2. 동작 정의 (실행될 내용)
-hodoCamera:SetScript("OnEvent", function(self, event, ...)
-    -- 다이나믹 피치 활성화
-    SetCVar("test_cameraDynamicPitch", hodoCameraSetting.test_cameraDynamicPitch)
-    
-    -- 캐릭터 중앙 고정 해제
-    if hodoCameraSetting.test_cameraDynamicPitch == 1 then
-        SetCVar("CameraKeepCharacterCentered", 0)
+------------------------------
+-- 카메라
+------------------------------
+function Camera()
+    if not hodoDB then
+        return
     end
 
-    -- 세부 수치 적용
-    SetCVar("test_cameraDynamicPitchBaseFovPad", hodoCameraSetting.test_cameraDynamicPitchBaseFovPad)
-    SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", hodoCameraSetting.test_cameraDynamicPitchBaseFovPadDownScale)
-    SetCVar("test_cameraDynamicPitchBaseFovPadFlying", hodoCameraSetting.test_cameraDynamicPitchBaseFovPadFlying)
-    
-    print("|cff00ff00[DynamicCameraFix]|r 수치 0.55 설정이 적용되었습니다.")
-end)
+    local DefaultDynamicCameraBase = hodoDB.DynamicCameraBase or 0.55
+    local DefaultDynamicCameraBaseDown = hodoDB.DynamicCameraDown or 0.55
+    local DefaultDynamicCameraBaseFlying = hodoDB.DynamicCameraFlying or 0.55
 
--- 3. 이벤트 등록 (이제부터 작동 시작)
-hodoCamera:RegisterEvent("PLAYER_ENTERING_WORLD")
+    if hodoDB.useDynamicCameraBase then
+        SetCVar("test_cameraDynamicPitch", 1)
+        SetCVar("CameraKeepCharacterCentered", 0)
+        SetCVar("test_cameraDynamicPitchBaseFovPad", DefaultDynamicCameraBase)
+    else
+        SetCVar("test_cameraDynamicPitch", 0) -- 껐다켰다 기능이라 else값 넣어줘야함
+        SetCVar("CameraKeepCharacterCentered", 1)
+    end
+
+    if hodoDB.useDynamicCameraDown then
+        SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", DefaultDynamicCameraBaseDown)
+    else
+        SetCVar("test_cameraDynamicPitchBaseFovPadDownScale", 0)
+    end
+
+    if hodoDB.useDynamicCameraFlying then
+        SetCVar("test_cameraDynamicPitchBaseFovPadFlying", DefaultDynamicCameraBaseFlying)
+    else
+        SetCVar("test_cameraDynamicPitchBaseFovPadFlying", 0)
+    end
+end
+
+
+------------------------------
+-- 이벤트
+------------------------------
+local initCamera = CreateFrame("Frame")
+initCamera:RegisterEvent("PLAYER_LOGIN")
+initCamera:SetScript("OnEvent", function(self, event)
+    UIParent:UnregisterEvent("EXPERIMENTAL_CVAR_CONFIRMATION_NEEDED")
+    hodoDB = hodoDB or {}
+    if Camera then
+        Camera()
+    end
+
+    if hodoCreateOptions then
+        hodoCreateOptions()
+    end
+
+    self:UnregisterAllEvents()
+end)
