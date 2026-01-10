@@ -9,27 +9,39 @@
 
 # 2020.11.23 제작
 
-#UI/Table.lua
-UI/CheckboxDropdown.xml
+UI/hodoUI.xml
 
-UI/Checkbox.lua
-UI/CheckboxDropdown.lua
-UI/CheckboxSlider.lua
-UI/DropDown.lua
-UI/Slider.lua
-
-AuctionFilter.lua
-Camera.lua
-ChatBubble.lua
-DeleteNow.lua
 FrameScale.lua
-InsDifficulty.lua
-MyKey.lua
-NewLFG.lua
+
+
+
+#UI/Table.lua
+
+
+#UI/Checkbox.lua
+#UI/CheckboxDropdown.lua
+#UI/CheckboxSlider.lua
+#UI/DropDown.lua
+#UI/Slider.lua
+
+
+
+
+
+
+
+#AuctionFilter.lua
+#Camera.lua
+ChatBubble.lua
+#DeleteNow.lua
+#FrameScale.lua
+#InsDifficulty.lua
+#MyKey.lua
+#NewLFG.lua
 
 
 Slash.lua
-1Option.lua
+#1Option.lua
 
 
 #PartyClass.lua
