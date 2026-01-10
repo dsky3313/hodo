@@ -22,11 +22,12 @@ function DropDown(category, varName, label, tooltip, options, default)
         return container:GetData()
     end
 
-    local initializer = Settings.CreateControlInitializer("SettingsDropDownControlTemplate", setting, GetOptions, tooltip)
-        setting:SetValueChangedCallback(function()
-            if ns.ChatBubble then ns.ChatBubble() end
-            if ns.CameraTilt then ns.CameraTilt() end
-        end)
+    local initializer = Settings.CreateControlInitializer("hodoDropdownTemplate", setting, GetOptions, tooltip)
+    setting:SetValueChangedCallback(function()
+
+        if ns.ChatBubble then ns.ChatBubble() end
+
+    end)
 
     local layout = SettingsPanel:GetLayout(category)
     if layout then
