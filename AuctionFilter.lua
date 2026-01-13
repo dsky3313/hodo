@@ -6,7 +6,7 @@ hodoDB = hodoDB or {}
 
 local function isIns() -- 인스확인
     local _, instanceType, difficultyID = GetInstanceInfo()
-    return (difficultyID == 1 or instanceType == "raid") -- 1 일반 / 8 쐐기
+    return (difficultyID == 8 or instanceType == "raid") -- 1 일반 / 8 쐐기
 end
 
 local AHF = Enum.AuctionHouseFilter.CurrentExpansionOnly

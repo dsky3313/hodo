@@ -8,7 +8,7 @@ local openRaidLib = LibStub:GetLibrary("LibOpenRaid-1.0", true)
 
 local function isIns() -- 인스확인
     local _, instanceType, difficultyID = GetInstanceInfo()
-    return (difficultyID == 1 or instanceType == "raid") -- 1 일반 / 8 쐐기
+    return (difficultyID == 8 or instanceType == "raid") -- 1 일반 / 8 쐐기
 end
 
 local dungeonName = {
